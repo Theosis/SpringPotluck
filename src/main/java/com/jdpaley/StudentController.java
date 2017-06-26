@@ -15,35 +15,55 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class StudentController {
-    @Autowired
+    
+	
+	@Autowired
     private StudentRepository studentRepository;
    
+    
 	@GetMapping(path="/")
-	public String add(Model m) {
+	public String menu(Model m) {
 		
 		WebDataObject wdo = new WebDataObject();
 		m.addAttribute("WebData", wdo);
-		Student st = new Student();
-		m.addAttribute("S", st);
+//		Student st = new Student();
+//		m.addAttribute("S", st);
 		return "index";
 	}
     
-    @GetMapping(path="/add")
-    public String addNew(Model m)
-            {
+	
+    @PostMapping(path = "/")
+    public String saveStudent(@ModelAttribute("WebData") WebDataObject wdo, Model m)
+    	{
+
+	    	String ch = wdo.getChoice().toUpperCase();
+			System.out.println("CHOICE = " + ch);
+			
+			if (ch.equals("A")) {
+				
                 Student student = new Student();  
-//                WebDataObject wdo = new WebDataObject();
-                m.addAttribute("stud", student);
-//                m.addAttribute("WebData", wdo);
-//                System.out.println(wdo);
-//                System.out.println(m);
-                return "index";
-            }
+                m.addAttribute("S", student);
+				return "add";
+			}
+			else if (ch.equals("D")) {
+				
+				
+				return "delete";
+			} 
+			else if (ch.equals("L")) {
+				
+				
+				return "list";
+			} 
+			else {
+				wdo.setChoice(null);
+				return "index";
+			}				
+    	}
     
     
 /*    @RequestMapping(path = "/add", method = RequestMethod.POST)
@@ -62,20 +82,18 @@ public class StudentController {
 			
     }*/
     
-    @RequestMapping(path = "/" , method = RequestMethod.POST)
-    public String saveStudent(@ModelAttribute("Student") Student st, @ModelAttribute("WebData") WebDataObject wdo, Model m)
-    	{
-//    	System.out.println("-----------------------------------");
-//    	System.out.println("STUDENT = " + st);
-//    	System.out.println("-----------------------------------");
-    	m.addAttribute("stud", st);
-		System.out.println("CHOICE = " + wdo.getChoice());
-		studentRepository.save(st);
-		return "saved";
-		
-    	}
     
-    @GetMapping(path="/all")
+    @PostMapping(path="/add")
+    public String add(@ModelAttribute("S") Student student, Model m)
+            {
+        		studentRepository.save(student);
+        		WebDataObject wdo = new WebDataObject();
+        		m.addAttribute("WebData", wdo);
+                return "index";
+            }
+ 
+    
+    @PostMapping(path="/list")
     public String getAll( Model m){
     	
     	Iterable<Student> students= studentRepository.findAll();

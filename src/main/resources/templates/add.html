@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <title>Spring Potluck - Add Participant</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+      <h1>Add Participant:</h1>
+      
+          <form action="#" th:action="@{/add}" method="post">
+      		
+<!--       	  <p>Choice: <input type="text" th:field="${WebData.choice}" /></p> -->
+          
+          <p>Name: <input type="text" th:field="${S.name}" /></p>
+          <p>Food: <input type="text" th:field="${S.food}" /></p>
+
+          <p><input type="submit" value="Submit" /> </p>
+          
+      </form>
+      
+<!--       <p th:text="'Name: ' + ${stud.name}" /> -->
+<!--       <p th:text="'Food: ' + ${stud.food}" /> -->
+      <br/>
+<!--       <a href="/add">Add another student</a> -->
+<!--       <a href="/all">List all messages</a> -->
+  </body>
+</html>
