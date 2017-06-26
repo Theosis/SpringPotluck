@@ -1,17 +1,27 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-      <title>WebATM</title>
+      <title>Spring Potluck</title>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
   <body>
-      <h1>ATM Menu</h1>
-      
-      <form action="#" th:action="@{/add}" th:object="${student}" method="post">
-      
-          <p>Name: <input type="text" th:field="*{name}" /><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span></p>
-          <p>Food: <input type="text" th:field="*{food}" /><span th:if="${#fields.hasErrors('food')}" th:errors="*{food}">Food Error</span></p>
+  	  <h1>Spring Potluck</h1>
+      <h4>Options:</h4>
+      <ul>
+      	<li>A - Add student to potluck</li>
+      	<li>D - Delete student from potluck</li>
+      	<li>L - List potluck participants</li>
+      </ul>
+      <br />
+      <form action="#" th:action="@{/}" method="post">
+      		
+      	  <p>Choice: <input type="text" th:field="${WebData.choice}" /></p>
+          
+<!--           <p>Name: <input type="text" th:field="${S.name}" /></p> -->
+<!--           <p>Food: <input type="text" th:field="${S.food}" /></p> -->
+
           <p><input type="submit" value="Submit" /> </p>
+          
       </form>
   </body>
 </html>
