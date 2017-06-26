@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <title>Potluck</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+      <h1>Saved</h1>
+      
+      
+      <p th:text="'Name: ' + ${stud.name}" />
+      <p th:text="'Food: ' + ${stud.food}" />
+      <br/>
+      <a href="/add">Add another student</a>
+      <a href="/all">List all messages</a>
+  </body>
+</html>

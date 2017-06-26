@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <title>WebATM</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+      <h1>ATM Menu</h1>
+      
+      <form action="#" th:action="@{/add}" th:object="${student}" method="post">
+      
+          <p>Name: <input type="text" th:field="*{name}" /><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span></p>
+          <p>Food: <input type="text" th:field="*{food}" /><span th:if="${#fields.hasErrors('food')}" th:errors="*{food}">Food Error</span></p>
+          <p><input type="submit" value="Submit" /> </p>
+      </form>
+  </body>
+</html>
